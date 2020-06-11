@@ -12,7 +12,7 @@
 <!-- DataTales Example -->
 <div class="card shadow mb-4">
     <div class="card-header py-3">
-        <a href="<?= base_url('tambah_pegawai') ?>" class="btn btn-info float-right"><i class="fas fa-user-plus"></i> Tambah</a>
+        <a href="<?= base_url('tambah_pegawai') ?>" class="btn btn-info float-right"><i class="fas fa-user-plus"></i> Tambah Pegawai</a>
     </div>
     <div class="card-body">
         <div class="table-responsive">
@@ -20,10 +20,9 @@
             <thead>
             <tr>
                 <th>No.</th>
-                <th>NIP</th>
                 <th>Nama Pegawai</th>
+                <th>NIP</th>
                 <th>Email</th>
-                <th>Alamat</th>
                 <th>No. HP</th>
                 <th>Status Kepegawaian</th>
                 <th>Aktif/Nonaktif</th>
@@ -33,23 +32,22 @@
             <tbody>
                 <?php
                     $no = 1;
-                    $data = mysqli_query($koneksi, "SELECT * FROM pegawai");
-                    while ($data_pegawai = mysqli_fetch_assoc($data)) : ?>
-                    <tr>
-                        <td><?= $no++; ?></td>
-                        <td><?= $data_pegawai['nip'] ?></td>
-                        <td><?= $data_pegawai['nama_pegawai'] ?></td>
-                        <td><?= $data_pegawai['email'] ?></td>
-                        <td><?= $data_pegawai['alamat'] ?></td>
-                        <td><?= $data_pegawai['no_hp'] ?></td>
-                        <td><?= strtoupper($data_pegawai['status_kepegawaian']) ?></td>
-                        <td><?= ucwords($data_pegawai['status_user']) ?></td>
-                        <td>
-                            <a href="#" class="btn btn-success btn-sm"><i class="fas fa-eye"></i> Detail</a>
-                            <a href="<?= base_url('edit_pegawai') ?>?id=<?= $data_pegawai['nip'] ?>" class="btn btn-warning btn-sm"><i class="fas fa-edit"></i> Edit</a>
-                        </td>
-                    </tr>
-                    <?php endwhile; ?>
+                    $data_p = query("SELECT * FROM pegawai GROUP BY nama_pegawai asc");
+                    foreach ($data_p as $p) : ?>
+                        <tr>
+                            <td><?= $no++; ?></td>
+                            <td><?= $p['nama_pegawai'] ?></td>
+                            <td><?= $p['nip'] ?></td>
+                            <td><?= $p['email'] ?></td>
+                            <td><?= $p['no_hp'] ?></td>
+                            <td><?= strtoupper($p['status_kepegawaian']) ?></td>
+                            <td><?= ucwords($p['status_user']) ?></td>
+                            <td>
+                                <a href="#" class="btn btn-success btn-sm"><i class="fas fa-eye"></i> Detail</a>
+                                <a href="<?= base_url('edit_pegawai') ?>?id=<?= $p['nip'] ?>" class="btn btn-warning btn-sm"><i class="fas fa-edit"></i> Edit</a>
+                            </td>
+                        </tr>
+                <?php endforeach; ?>
             </tbody>
         </table>
         </div>

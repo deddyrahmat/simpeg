@@ -4,56 +4,25 @@
 
     if (isset($_GET['add']) ) {
         $nip = mysqli_real_escape_string($koneksi, $_POST['nip']);
-        $nama_pegawai = strip_tags($_POST['nama_pegawai']);
-        $tempat_lahir = strip_tags($_POST['tempat_lahir']);
-        $tgl_lahir = strip_tags($_POST['tgl_lahir']);
-        $jk = strip_tags($_POST['jk']);
-        $no_hp = strip_tags($_POST['no_hp']);
-        $agama = strip_tags($_POST['agama']);
-        $email = strip_tags($_POST['email']);
-        $alamat = strip_tags($_POST['alamat']);
-        $goldarah = strip_tags($_POST['goldarah']);
-        $stat_nikah = strip_tags($_POST['stat_nikah']);
-        $stat_pegawai = strip_tags($_POST['stat_pegawai']);
+        $pangkat = strip_tags($_POST['pangkat']);
+        $jenis_pangkat = strip_tags($_POST['jenis_pangkat']);
+        $tmt = strip_tags($_POST['tmt']);
+        $tgl_sah = strip_tags($_POST['tgl_sah']);
+        $sah_sk = strip_tags($_POST['sah_sk']);
+        $no_sk = strip_tags($_POST['no_sk']);
 
-        $ekstensi  = ['png','jpeg','jpg'];
-        $namaFile    = strtolower($_FILES['foto']['name']);
-        $tipe   = pathinfo($namaFile, PATHINFO_EXTENSION);
-        $ukuranFile    = $_FILES['foto']['size'];
-        $sumber   = $_FILES['foto']['tmp_name'];
-        $foto = uniqid();
-        $foto .= '.';
-        $foto .= $tipe;
-
-        if(in_array($tipe, $ekstensi) === true)
-        {
-            if($ukuranFile < 1048576) {//1 mb
-                $lokasi = "../_assets/img/".$foto;
-                create("INSERT INTO pegawai VALUES ('$nip','$nama_pegawai','$foto','$tempat_lahir','$tgl_lahir','$jk','$no_hp','$agama','$email','$alamat','$goldarah','$stat_nikah','$stat_pegawai','aktif')");
-                $upload=move_uploaded_file($sumber, $lokasi);
-                    if($upload) { 
-                        echo '<script>
-                        alert("Data Berhasil Ditambah")
-                        window.location = "'.base_url('pegawai').'";
-                        </script>';                     
-                    }
-                    else{
-                        echo '<script>
-                        alert("Data Gagal Diupload")
-                        window.location = "'.base_url('tambah_pegawai').'";
-                        </script>';  
-                    }
-            } else{
-                echo '<script>alert("Maaf Ukuran File Terlalu Besar")
-                        window.location = "'.base_url('tambah_pegawai').'";
-                        </script>';  
-                }
+        $create = create("INSERT INTO pangkat VALUES ('','$nip','$pangkat','$jenis_pangkat','$tmt','$tgl_sah','$sah_sk','$no_sk','nonaktif')");
+        if(mysqli_affected_rows($koneksi) > 0) { 
+            echo '<script>
+            alert("Data Berhasil Ditambah")
+            window.location = "'.base_url('pangkat').'";
+            </script>';                     
         }
-        else
-        {
-            echo '<script>alert("Maaf Jenis File Tidak Diizinkan")
-                window.location = "'.base_url('tambah_pegawai').'";
-                </script>';  
+        else{
+            echo '<script>
+            alert("Data Gagal Ditambah")
+            window.location = "'.base_url('pangkat').'";
+            </script>';  
         }
     }elseif (isset($_GET['edit'])) {
         $nipAsli = mysqli_real_escape_string($koneksi, $_POST['nipAsli']);

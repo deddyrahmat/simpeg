@@ -70,7 +70,7 @@
 
       <!-- Nav Item - Data Pegawai -->
       <li class="nav-item">
-        <a class="nav-link" href="index.html">
+        <a class="nav-link" href="<?= base_url('keluarga') ?>">
           <i class="fas fa-fw fa-users"></i>
           <span>Data Keluarga</span></a>
       </li>
@@ -84,9 +84,9 @@
         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Custom Riwayat:</h6>
-            <a class="collapse-item" href="cards.html">Pendidikan</a>
-            <a class="collapse-item" href="cards.html">Jabatan</a>
-            <a class="collapse-item" href="cards.html">Pangkat</a>
+            <a class="collapse-item" href="<?= base_url('pendidikan') ?>">Pendidikan</a>
+            <a class="collapse-item" href="<?= base_url('jabatan') ?>">Jabatan</a>
+            <a class="collapse-item" href="<?= base_url('pangkat') ?>">Pangkat</a>
           </div>
         </div>
       </li>
