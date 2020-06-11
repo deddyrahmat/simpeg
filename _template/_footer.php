@@ -8,7 +8,7 @@
       <footer class="sticky-footer bg-white">
         <div class="container my-auto">
           <div class="copyright text-center my-auto">
-            <span>Copyright &copy; Your Website 2019</span>
+            <span>Copyright &copy; DRahmat 2020</span>
           </div>
         </div>
       </footer>
@@ -53,6 +53,16 @@
 
   <!-- Custom scripts for all pages-->
   <script src="<?= asset('_assets/js/sb-admin-2.min.js') ?>"></script>
+
+  <?php
+    // jika variabel addscript sudah ditentukan
+    if (isset($addscript)) {
+      // jika variabel addscript tidak sama dengan null, tampilkan script tambahan
+      if ($addscript != null) {
+        echo $addscript;
+      }
+    }
+  ?>
 
 </body>
 

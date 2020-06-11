@@ -1,4 +1,6 @@
 <?php
+
+  // memanggil data configurasi dan function
   require_once "_config/config.php";
 ?>
 <!DOCTYPE html>
@@ -20,6 +22,16 @@
 
   <!-- Custom styles for this template-->
   <link href="<?= asset('_assets/css/sb-admin-2.min.css') ?>" rel="stylesheet">
+  
+  <?php
+  // jika variabel addstyles sudah ditentukan
+  if (isset($addstyles)) {
+    // jika variabel addstyles tidak sama dengan null, tampilkan style tambahan
+    if ($addstyles != null) {
+      echo '<link href="'. asset($addstyles) .'" rel="stylesheet">';
+    }
+  }
+  ?>
 
 </head>
 
@@ -34,7 +46,7 @@
       <!-- Sidebar - Brand -->
       <a class="sidebar-brand d-flex align-items-center justify-content-center" href="<?= base_url() ?>">
         <div class="sidebar-brand-icon rotate-n-15">
-          <i class="fas fa-laugh-wink"></i>
+          <i class="fas fa-users"></i>
         </div>
         <div class="sidebar-brand-text mx-3">SIMPEG</div>
       </a>
@@ -44,29 +56,37 @@
 
       <!-- Nav Item - Dashboard -->
       <li class="nav-item">
-        <a class="nav-link" href="index.html">
+        <a class="nav-link" href="<?= base_url() ?>">
           <i class="fas fa-fw fa-home"></i>
           <span>Dashboard</span></a>
       </li>
 
       <!-- Nav Item - Data Pegawai -->
       <li class="nav-item">
+        <a class="nav-link" href="<?= base_url('pegawai') ?>">
+          <i class="fas fa-fw fa-user"></i>
+          <span>Data Pegawai</span></a>
+      </li>
+
+      <!-- Nav Item - Data Pegawai -->
+      <li class="nav-item">
         <a class="nav-link" href="index.html">
           <i class="fas fa-fw fa-users"></i>
-          <span>Data Pegawai</span></a>
+          <span>Data Keluarga</span></a>
       </li>
 
       <!-- Nav Item - Pages Collapse Menu -->
       <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
-          <i class="fas fa-fw fa-cog"></i>
-          <span>Data Referensi</span>
+          <i class="fas fa-fw fa-history"></i>
+          <span>Data Riwayat</span>
         </a>
         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
-            <h6 class="collapse-header">Custom Referensi:</h6>
-            <a class="collapse-item" href="buttons.html">Keluarga</a>
+            <h6 class="collapse-header">Custom Riwayat:</h6>
             <a class="collapse-item" href="cards.html">Pendidikan</a>
+            <a class="collapse-item" href="cards.html">Jabatan</a>
+            <a class="collapse-item" href="cards.html">Pangkat</a>
           </div>
         </div>
       </li>
