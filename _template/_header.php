@@ -46,7 +46,7 @@
       <!-- Sidebar - Brand -->
       <a class="sidebar-brand d-flex align-items-center justify-content-center" href="<?= base_url() ?>">
         <div class="sidebar-brand-icon rotate-n-15">
-          <i class="fas fa-users"></i>
+          <i class="fas fa-user"></i>
         </div>
         <div class="sidebar-brand-text mx-3">SIMPEG</div>
       </a>
@@ -68,13 +68,6 @@
           <span>Data Pegawai</span></a>
       </li>
 
-      <!-- Nav Item - Data Pegawai -->
-      <li class="nav-item">
-        <a class="nav-link" href="<?= base_url('keluarga') ?>">
-          <i class="fas fa-fw fa-users"></i>
-          <span>Data Keluarga</span></a>
-      </li>
-
       <!-- Nav Item - Pages Collapse Menu -->
       <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
@@ -84,6 +77,7 @@
         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Custom Riwayat:</h6>
+            <a class="collapse-item" href="<?= base_url('keluarga') ?>">Keluarga</a>
             <a class="collapse-item" href="<?= base_url('pendidikan') ?>">Pendidikan</a>
             <a class="collapse-item" href="<?= base_url('jabatan') ?>">Jabatan</a>
             <a class="collapse-item" href="<?= base_url('pangkat') ?>">Pangkat</a>
