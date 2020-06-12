@@ -27,7 +27,7 @@
   <meta name="description" content="Sistem Informasi Kepegawaian">
   <meta name="author" content="Deddy Rahmat">
 
-  <title>SIMPEG</title>
+  <title>SIMPEG - <?= $nama; ?></title>
 
   <!-- Custom fonts for this template-->
   <link href="<?= asset('_assets/vendor/fontawesome-free/css/all.min.css') ?>" rel="stylesheet" type="text/css">
@@ -59,7 +59,7 @@
       <!-- Sidebar - Brand -->
       <a class="sidebar-brand d-flex align-items-center justify-content-center" href="<?= base_url() ?>">
         <div class="sidebar-brand-icon rotate-n-15">
-          <i class="fas fa-user"></i>
+          <i class="fas fa-user-circle"></i>
         </div>
         <div class="sidebar-brand-text mx-3">SIMPEG</div>
       </a>
@@ -68,21 +68,22 @@
       <hr class="sidebar-divider my-0">
 
       <!-- Nav Item - Dashboard -->
-      <li class="nav-item">
+      <!-- //$data['status_user'] == 'aktif' ? 'selected' :null -->
+      <li class="nav-item <?= isset($dashboard) == 'dashboard' ? 'active' : null ?> ">
         <a class="nav-link" href="<?= base_url() ?>">
           <i class="fas fa-fw fa-home"></i>
           <span>Dashboard</span></a>
       </li>
 
       <!-- Nav Item - Data Pegawai -->
-      <li class="nav-item">
+      <li class="nav-item <?= isset($pegawai) == 'pegawai' ? 'active' : null ?>">
         <a class="nav-link" href="<?= base_url('pegawai') ?>">
           <i class="fas fa-fw fa-user"></i>
           <span>Data Pegawai</span></a>
       </li>
 
       <!-- Nav Item - Pages Collapse Menu -->
-      <li class="nav-item">
+      <li class="nav-item <?= isset($riwayat) == 'riwayat' ? 'active' : null ?>">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
           <i class="fas fa-fw fa-history"></i>
           <span>Data Riwayat</span>
@@ -90,10 +91,10 @@
         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Custom Riwayat:</h6>
-            <a class="collapse-item" href="<?= base_url('keluarga') ?>">Keluarga</a>
-            <a class="collapse-item" href="<?= base_url('pendidikan') ?>">Pendidikan</a>
-            <a class="collapse-item" href="<?= base_url('jabatan') ?>">Jabatan</a>
-            <a class="collapse-item" href="<?= base_url('pangkat') ?>">Pangkat</a>
+            <a class="collapse-item <?= isset($keluarga) == 'keluarga' ? 'active' : null ?>" href="<?= base_url('keluarga') ?>">Keluarga</a>
+            <a class="collapse-item <?= isset($pendidikan) == 'pendidikan' ? 'active' : null ?>" href="<?= base_url('pendidikan') ?>">Pendidikan</a>
+            <a class="collapse-item <?= isset($jabatan) == 'jabatan' ? 'active' : null ?>" href="<?= base_url('jabatan') ?>">Jabatan</a>
+            <a class="collapse-item <?= isset($pangkat) == 'pangkat' ? 'active' : null ?>" href="<?= base_url('pangkat') ?>">Pangkat</a>
           </div>
         </div>
       </li>
@@ -156,7 +157,7 @@
             <li class="nav-item dropdown no-arrow">
               <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?= $user[0]['username'] ?></span>
-                <img class="img-profile rounded-circle" src="https://source.unsplash.com/QAB-WJcbgJk/60x60">
+                <img class="img-profile rounded-circle" alt="Image" src="https://source.unsplash.com/QAB-WJcbgJk/60x60">
               </a>
               <!-- Dropdown - User Information -->
               <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">

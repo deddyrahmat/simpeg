@@ -1,4 +1,10 @@
 <?php
+  //variabel yang berfungsi menyimpan detail dari sub judul website
+  $nama = 'Dashboard'; 
+  //variabel yang berfungsi mengatifkan sidebar
+  $dashboard = "dashboard";
+
+  // menghubungkan file header dengan file dashboard
   require_once "_template/_header.php";
 ?>
 
@@ -63,5 +69,6 @@
   </div>
 
 <?php
+  // menghubungkan file footer dengan file dashboard
   require_once "_template/_footer.php";
 ?>

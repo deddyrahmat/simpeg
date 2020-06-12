@@ -1,5 +1,11 @@
 <?php
+    //variabel yang berfungsi menyimpan detail dari sub judul website
+    $nama = 'Tambah Pegawai'; 
+    //variabel yang berfungsi mengatifkan sidebar
+    $pegawai = 'pegawai';
+    // menambahkan style khusus untuk halaman ini saja
     $addstyles = '_assets/vendor/bootstrap-datepicker/css/bootstrap-datepicker.min.css';
+    // menghubungkan file header dengan file tambah Pegawai
     require_once "_template/_header.php";
 ?>
 
@@ -149,6 +155,7 @@
 
 <?php
 
+    // menambahkan script khusus untuk halaman ini saja
     $addscript = '
         <script src="'.asset('_assets/vendor/bootstrap-datepicker/js/bootstrap-datepicker.min.js').'"></script>
         <script>
@@ -160,5 +167,6 @@
             })    
         </script>
     ';
+    // menghubungkan file footer dengan file tambah Pegawai
     require_once "_template/_footer.php";
 ?>

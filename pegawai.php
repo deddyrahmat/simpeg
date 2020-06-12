@@ -1,5 +1,14 @@
 <?php
+    //variabel yang berfungsi menyimpan detail dari sub judul website
+    $nama = 'Data Pegawai'; 
+
+    //variabel yang berfungsi mengatifkan sidebar
+    $pegawai = 'pegawai';
+
+    // menambahkan style khusus untuk halaman ini saja
     $addstyles = '_assets/vendor/datatables/dataTables.bootstrap4.min.css';
+
+    // menghubungkan file header dengan file Pegawai
     require_once "_template/_header.php";
 ?>
 
@@ -43,7 +52,7 @@
                             <td><?= strtoupper($p['status_kepegawaian']) ?></td>
                             <td><?= ucwords($p['status_user']) ?></td>
                             <td>
-                                <a href="#" class="btn btn-success btn-sm"><i class="fas fa-eye"></i> Detail</a>
+                                <a href="<?= base_url('detail_pegawai') ?>?id=<?= $p['nip'] ?>" class="btn btn-success btn-sm"><i class="fas fa-eye"></i> Detail</a>
                                 <a href="<?= base_url('edit_pegawai') ?>?id=<?= $p['nip'] ?>" class="btn btn-warning btn-sm"><i class="fas fa-edit"></i> Edit</a>
                             </td>
                         </tr>
@@ -55,11 +64,14 @@
 </div>
 <?php
 
+    // menambahkan script khusus untuk halaman ini saja
     $addscript = '
         <script src="'.asset('_assets/vendor/datatables/jquery.dataTables.min.js').'"></script>
         <script src="'.asset('_assets/vendor/datatables/dataTables.bootstrap4.min.js').'"></script>
     
         <script src="'.asset('_assets/js/demo/datatables-demo.js').'"></script>
     ';
+
+    // menghubungkan file footer dengan file detail Pegawai
     require_once "_template/_footer.php";
 ?>

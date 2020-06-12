@@ -1,5 +1,13 @@
 <?php
+    //variabel yang berfungsi menyimpan detail dari sub judul website
+    $nama = 'Riwayat Pendidikan'; 
+    //variabel yang berfungsi mengatifkan sidebar
+    $riwayat = 'riwayat';
+    //variabel yang berfungsi mengatifkan sidebar
+    $pendidikan = 'pendidikan';
+    // menambahkan style khusus untuk halaman ini saja
     $addstyles = '_assets/vendor/bootstrap-datepicker/css/bootstrap-datepicker.min.css';
+    // menghubungkan file header dengan file pendidikan
     require_once "_template/_header.php";
 ?>
 
@@ -72,11 +80,13 @@
 
 <?php
 
+    // menambahkan script khusus untuk halaman ini saja
     $addscript = '
         <script src="'.asset('_assets/vendor/bootstrap-datepicker/js/bootstrap-datepicker.min.js').'"></script>
         <script>
             $(".datepicker").datepicker()
         </script>
     ';
+    // menghubungkan file footer dengan file pendidikan
     require_once "_template/_footer.php";
 ?>

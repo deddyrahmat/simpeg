@@ -1,10 +1,19 @@
 <?php
+    //variabel yang berfungsi menyimpan detail dari sub judul website
+    $nama = 'Edit Data Pegawai'; 
+    //variabel yang berfungsi mengatifkan sidebar
+    $pegawai = 'pegawai';
+    // menambahkan style khusus untuk halaman ini saja
     $addstyles = '_assets/vendor/bootstrap-datepicker/css/bootstrap-datepicker.min.css';
+
+    // menghubungkan file header dengan file edit_pegawai
     require_once "_template/_header.php";
-    $nip = $_GET['id'];//simpan data yang id(nip) yang dikirim dari halaman pegawai ke dalam variabel nip
+    //simpan data id(nip) yang dikirim dari halaman pegawai ke dalam variabel nip
+    $nip = $_GET['id'];
 
     // paggil data pegawai berdasarkan nip untuk ditampilkan di form sebelum melakukan perubahan data
     $result = mysqli_query($koneksi, "SELECT * FROM pegawai WHERE nip='$nip'");
+    // hasil dari proses result akan disimpan ke variabel data
     $data = mysqli_fetch_assoc($result);
 ?>
 
@@ -21,7 +30,7 @@
             <div class="form-group row">
                 <label for="stat_user" class="col-sm-3 col-form-label">Status User</label>
                 <div class="col-sm-9">
-                    <select class="form-control" name="stat_user" id="stat_user" required autocomplete="off">
+                    <select class="form-control" name="stat_user" id="stat_user" required autocomplete="off" autofocus>
                         <option value="aktif" <?= $data['status_user'] == 'aktif' ? 'selected' :null ?>>Aktif</option>
                         <option value="nonaktif" <?= $data['status_user'] == 'nonaktif' ? 'selected' :null ?>>Non Aktif</option>
                     </select>
@@ -31,7 +40,7 @@
                 <label for="nip" class="col-sm-3 col-form-label">NIP</label>
                 <div class="col-sm-9">
                     <input type="hidden" name="nipAsli" value="<?= $nip ?>">
-                    <input type="text" class="form-control" name="nip" id="nip" placeholder="NIP" value="<?= $data['nip'] ?>" required autocomplete="off" autofocus>
+                    <input type="text" class="form-control" name="nip" id="nip" placeholder="NIP" value="<?= $data['nip'] ?>" required autocomplete="off">
                 </div>
             </div>
             <div class="form-group row">
@@ -179,5 +188,7 @@
             })    
         </script>
     ';
+
+    // menghubungkan file footer dengan file edit_pegawai
     require_once "_template/_footer.php";
 ?>
