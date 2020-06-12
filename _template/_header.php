@@ -2,6 +2,19 @@
 
   // memanggil data configurasi dan function
   require_once "_config/config.php";
+
+  // melakukan verifikasi user apakah sudah login atau belum, jika belum arahkan ke halaman login
+  if (!isset($_SESSION['login'])) {
+    echo "
+        <script>
+            alert('Silahkan Login Terlebih Dahulu');
+            window.location='".base_url('login')."';
+        </script>            
+    ";
+  }
+
+  $id = $_SESSION['id_user'];
+  $user = query("SELECT * FROM user WHERE id_user='$id'");
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -88,6 +101,12 @@
       <!-- Divider -->
       <hr class="sidebar-divider d-none d-md-block">
 
+      <li class="nav-item mb-3">
+        <a class="nav-link" href="#" data-toggle="modal" data-target="#logoutModal">
+          <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+          <span>Logout</span></a>
+      </li>
+
       <!-- Sidebar Toggler (Sidebar) -->
       <div class="text-center d-none d-md-inline">
         <button class="rounded-circle border-0" id="sidebarToggle"></button>
@@ -136,7 +155,7 @@
             <!-- Nav Item - User Information -->
             <li class="nav-item dropdown no-arrow">
               <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Valerie Luna</span>
+                <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?= $user[0]['username'] ?></span>
                 <img class="img-profile rounded-circle" src="https://source.unsplash.com/QAB-WJcbgJk/60x60">
               </a>
               <!-- Dropdown - User Information -->
