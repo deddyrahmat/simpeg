@@ -1,7 +1,13 @@
 <?php
 
-  // memanggil data configurasi dan function
-  require_once "_config/config.php";
+  // jika yang dipanggil user adalah file yang berada didalam subfolder dan memiliki variabel sub, panggil file config yang ada sesuai dengan posisi file di folder
+  if (isset($sub)) {
+    // memanggil data configurasi dan function dari subfolder
+    require_once $sub."_config/config.php";
+  }else{
+    // memanggil data configurasi dan function
+    require_once "_config/config.php";
+  }
 
   // melakukan verifikasi user apakah sudah login atau belum, jika belum arahkan ke halaman login
   if (!isset($_SESSION['login'])) {

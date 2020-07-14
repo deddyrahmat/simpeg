@@ -10,9 +10,20 @@
     //simpan data id(nip) yang dikirim dari halaman pegawai ke dalam variabel nip
     $nip = $_GET['id'];
 
+    // letakkan kondisi function yang diinginkan
+    // tentukan variabel yang akan digunakan untuk menyimpan data function penghubung kehalaman. defualt halaman yaitu profile
+    // cek data function yang dikirim dari halaman sebelumnya untuk menampilkan detail data pegawai yang diinginkan
+    if (isset($_SESSION['func'])) {
+        $func = $_SESSION['func'];
+    }else{
+        $func = "link_profil";
+    }
+    
+
     // lakukan filter data berdasarkan nip yang telah ditangkap divariabel nip dan jalankan function query
     // simpan hasil query kedalam variabel data_detail
     $data_detail = query("SELECT * FROM pegawai WHERE nip='$nip'");
+        
 ?>
 
 <nav aria-label="breadcrumb">
@@ -46,19 +57,19 @@
             <div class="card-body">
                 <ul class="nav nav-tabs">
                     <li class="nav-item">
-                        <a class="nav-link stat-profil" id="profil" onClick="link_profil('<?= $data_detail[0]['nip'] ?>')" href="javascript:void(0)">Profil</a>
+                        <a class="nav-link <?= $func == "link_profil" ? "active" : null ?>" id="profil" onClick="link_profil('<?= $data_detail[0]['nip'] ?>')" href="javascript:void(0)">Profil</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link stat-keluarga" id="keluarga" onclick="link_keluarga()" href="javascript:void()">Keluarga</a>
+                        <a class="nav-link <?= $func == "link_keluarga" ? "active" : null ?>" id="keluarga" onclick="link_keluarga('<?= $data_detail[0]['nip'] ?>')" href="javascript:void()">Keluarga</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link stat" id="pendidikan" href="#">Pendidikan</a>
+                        <a class="nav-link" id="pendidikan" href="javascript:void()" onclick="link_pendidikan('<?= $data_detail[0]['nip'] ?>')">Pendidikan</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link stat" id="jabatan" href="#">Jabatan</a>
+                        <a class="nav-link" id="jabatan" href="#">Jabatan</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link stat" id="pangkat" href="#">Pangkat</a>
+                        <a class="nav-link" id="pangkat" href="#">Pangkat</a>
                     </li>
                 </ul>
             </div>
@@ -70,20 +81,31 @@
 
     // menambahkan script khusus untuk halaman ini saja
     $addscript = "
-        <script>
-            function link_profil(nip){
-                $.get('detail_pegawai/profil.php',{nip:nip}, function(data){
-                    $('#dataLink').html(data);
-                })
-            }
-            function link_keluarga(){
-                $.get('detail_pegawai/keluarga.php', function(data){
-                    $('#dataLink').html(data);
-                })
-            }
-        </script>
-    ";
-
+        <script type='text/javascript'>
+                function link_profil(nip){
+                    $.get('detail_pegawai/profil.php?func=link_profil',{nip:nip}, function(data){
+                        $('#dataLink').html(data);
+                    })
+                }
+                function link_keluarga(nip){
+                    $.get('detail_pegawai/keluarga.php?func=link_keluarga',{nip:nip}, function(data){
+                        $('#dataLink').html(data);
+                    });
+                }
+                function link_pendidikan(nip){
+                    $.get('detail_pegawai/pendidikan.php',{nip:nip}, function(data){
+                        $('#dataLink').html(data);
+                    })
+                }
+            ";
+    
+    
+    $addscript = $addscript .$func."('$nip')";
+        
+    $addscript = $addscript . " </script>";//penutup
+    
     // menghubungkan file footer dengan file detail pegawai
     require_once "_template/_footer.php";
+    
+    
 ?>
