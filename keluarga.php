@@ -82,8 +82,7 @@
                         <option value="istri">Istri</option>
                         <option value="ayah">Ayah</option>
                         <option value="ibu">Ibu</option>
-                        <option value="anak kandung">Anak Kandung</option>
-                        <option value="anak angkat">Anak Angkat</option>
+                        <option value="anak">Anak</option>
                     </select>
                 </div>
             </div>

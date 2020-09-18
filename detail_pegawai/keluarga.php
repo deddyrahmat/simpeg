@@ -1,10 +1,7 @@
 <?php
-require_once "../_config/config.php";
-$nip = $_GET['nip'];
 $data_keluarga = query("SELECT * FROM keluarga WHERE nip='$nip' ORDER BY hubungan");
-$_SESSION['func'] = $_GET['func'];
 ?>
-<div class="table-responsive">
+<div class="table-responsive mt-3">
     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
         <thead>
             <tr>

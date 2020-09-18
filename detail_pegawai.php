@@ -55,54 +55,50 @@
     <div class="col-md-8">
         <div class="card shadow mb-4 border-bottom-primary">
             <div class="card-body">
-                <ul class="nav nav-tabs">
-                    <li class="nav-item">
-                        <a class="nav-link <?= $func == "link_profil" ? "active" : null ?>" id="profil" onClick="link_profil('<?= $data_detail[0]['nip'] ?>')" href="javascript:void(0)">Profil</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link <?= $func == "link_keluarga" ? "active" : null ?>" id="keluarga" onclick="link_keluarga('<?= $data_detail[0]['nip'] ?>')" href="javascript:void()">Keluarga</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" id="pendidikan" href="javascript:void()" onclick="link_pendidikan('<?= $data_detail[0]['nip'] ?>')">Pendidikan</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" id="jabatan" href="#">Jabatan</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" id="pangkat" href="#">Pangkat</a>
-                    </li>
-                </ul>
+                <nav>
+                    <div class="nav nav-tabs" id="nav-tab">
+                        <a class="nav-item nav-link" id="nav-profil-tab" data-toggle="tab" href="#nav-profil" role="tab">Profil</a>
+                        <a class="nav-item nav-link" id="nav-keluarga-tab" data-toggle="tab" href="#nav-keluarga" role="tab">Keluarga</a>
+                        <a class="nav-item nav-link" id="nav-pendidikan-tab" data-toggle="tab" href="#nav-pendidikan" role="tab">Pendidikan</a>
+                        <a class="nav-item nav-link" id="nav-jabatan-tab" data-toggle="tab" href="#nav-jabatan" role="tab">Jabatan</a>
+                        <a class="nav-item nav-link" id="nav-pangkat-tab" data-toggle="tab" href="#nav-pangkat" role="tab">Pangkat</a>
+                    </div>
+                </nav>
+                <div class="tab-content" id="nav-tabContent">
+                    <div class="tab-pane fade show active" id="nav-profil" role="tabpanel">
+                        <?php
+                            require_once "detail_pegawai/profil.php";
+                        ?>
+                    </div>
+                    <div class="tab-pane fade" id="nav-keluarga" role="tabpanel">
+                    <?php
+                        require_once "detail_pegawai/keluarga.php";
+                    ?>
+                    </div>
+                    <div class="tab-pane fade" id="nav-pendidikan" role="tabpanel">
+                    <?php
+                        require_once "detail_pegawai/pendidikan.php";
+                    ?>
+                    </div>
+                    <div class="tab-pane fade" id="nav-jabatan" role="tabpanel">
+                    <?php
+                        require_once "detail_pegawai/jabatan.php";
+                    ?>
+                    </div>
+                    <div class="tab-pane fade" id="nav-pangkat" role="tabpanel">
+                    <?php
+                        require_once "detail_pegawai/pangkat.php";
+                    ?>
+                    </div>
+                </div>
             </div>
-            <div class="card-body mt-n4" id="dataLink"></div>
         </div>
     </div>
 </div>
-<?php
 
-    // menambahkan script khusus untuk halaman ini saja
-    $addscript = "
-        <script type='text/javascript'>
-                function link_profil(nip){
-                    $.get('detail_pegawai/profil.php?func=link_profil',{nip:nip}, function(data){
-                        $('#dataLink').html(data);
-                    })
-                }
-                function link_keluarga(nip){
-                    $.get('detail_pegawai/keluarga.php?func=link_keluarga',{nip:nip}, function(data){
-                        $('#dataLink').html(data);
-                    });
-                }
-                function link_pendidikan(nip){
-                    $.get('detail_pegawai/pendidikan.php',{nip:nip}, function(data){
-                        $('#dataLink').html(data);
-                    })
-                }
-            ";
-    
-    
-    $addscript = $addscript .$func."('$nip')";
-        
-    $addscript = $addscript . " </script>";//penutup
+
+
+<?php
     
     // menghubungkan file footer dengan file detail pegawai
     require_once "_template/_footer.php";

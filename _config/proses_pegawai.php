@@ -85,10 +85,10 @@
             else{
                 echo '<script>
                 alert("Data Gagal Diperbarui")
-                window.location = "'.base_url('tambah_pegawai').'";
+                window.location = "'.base_url('edit_pegawai').'?id='.$nipAsli.'";
                 </script>';  
             }
-        }else{
+        }elseif ($_FILES['foto']['name'] == '') {
             $ekstensi  = ['png','jpeg','jpg'];
             $namaFile    = strtolower($_FILES['foto']['name']);
             $tipe   = pathinfo($namaFile, PATHINFO_EXTENSION);
@@ -116,20 +116,25 @@
                         else{
                             echo '<script>
                             alert("Data Gagal Diupload")
-                            window.location = "'.base_url('tambah_pegawai').'";
+                            window.location = "'.base_url('edit_pegawai').'?id='.$nipAsli.'";
                             </script>';  
                         }
                 } else{
                     echo '<script>alert("Maaf Ukuran File Terlalu Besar")
-                            window.location = "'.base_url('tambah_pegawai').'";
+                            window.location = "'.base_url('edit_pegawai').'?id='.$nipAsli.'";
                             </script>';  
                     }
             }
             else
             {
                 echo '<script>alert("Maaf Jenis File Tidak Diizinkan")
-                    window.location = "'.base_url('tambah_pegawai').'";
+                    window.location = "'.base_url('edit_pegawai').'?id='.$nipAsli.'";
                     </script>';  
             }
+        }else{
+            echo '<script>
+            alert("Data Gagal Diperbarui")
+            window.location = "'.base_url('edit_pegawai').'?id='.$nipAsli.'";
+            </script>'; 
         }
     }

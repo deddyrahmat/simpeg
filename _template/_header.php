@@ -41,6 +41,15 @@
 
   <!-- Custom styles for this template-->
   <link href="<?= asset('_assets/css/sb-admin-2.min.css') ?>" rel="stylesheet">
+
+  <!-- favicon -->
+  <link rel="apple-touch-icon" sizes="180x180" href="<?= asset("_assets/img/design/apple-touch-icon.png") ?>">
+  <link rel="icon" type="image/png" sizes="32x32" href="<?= asset("_assets/img/design/favicon-32x32.png") ?>">
+  <link rel="icon" type="image/png" sizes="16x16" href="<?= asset("_assets/img/design/favicon-16x16.png") ?>">
+  <link rel="manifest" href="<?= asset("_assets/img/design/site.webmanifest") ?>">
+  <link rel="mask-icon" href="<?= asset("_assets/img/design/safari-pinned-tab.svg") ?>" color="#5bbad5">
+  <meta name="msapplication-TileColor" content="#da532c">
+  <meta name="theme-color" content="#ffffff">
   
   <?php
   // jika variabel addstyles sudah ditentukan
@@ -163,7 +172,7 @@
             <li class="nav-item dropdown no-arrow">
               <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?= $user[0]['username'] ?></span>
-                <img class="img-profile rounded-circle" alt="Image" src="https://source.unsplash.com/QAB-WJcbgJk/60x60">
+                <img class="img-profile rounded-circle" alt="Image" src="<?= asset('_assets/img/profil.jpg') ?>">
               </a>
               <!-- Dropdown - User Information -->
               <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">

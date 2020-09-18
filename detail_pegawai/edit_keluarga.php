@@ -85,8 +85,7 @@
                         <option value="istri" <?= $data[0]['hubungan'] == "istri" ? "selected" : null ?>>Istri</option>
                         <option value="ayah" <?= $data[0]['hubungan'] == "ayah" ? "selected" : null ?>>Ayah</option>
                         <option value="ibu" <?= $data[0]['hubungan'] == "ibu" ? "selected" : null ?>>Ibu</option>
-                        <option value="anak kandung" <?= $data[0]['hubungan'] == "anak kandung" ? "selected" : null ?>>Anak Kandung</option>
-                        <option value="anak angkat" <?= $data[0]['hubungan'] == "anak angkat" ? "selected" : null ?>>Anak Angkat</option>
+                        <option value="anak" <?= $data[0]['hubungan'] == "anak" ? "selected" : null ?>>Anak</option>
                     </select>
                 </div>
             </div>

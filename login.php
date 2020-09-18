@@ -21,6 +21,15 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
+  <!-- favicon -->
+  <link rel="apple-touch-icon" sizes="180x180" href="<?= asset("_assets/img/design/apple-touch-icon.png") ?>">
+  <link rel="icon" type="image/png" sizes="32x32" href="<?= asset("_assets/img/design/favicon-32x32.png") ?>">
+  <link rel="icon" type="image/png" sizes="16x16" href="<?= asset("_assets/img/design/favicon-16x16.png") ?>">
+  <link rel="manifest" href="<?= asset("_assets/img/design/site.webmanifest") ?>">
+  <link rel="mask-icon" href="<?= asset("_assets/img/design/safari-pinned-tab.svg") ?>" color="#5bbad5">
+  <meta name="msapplication-TileColor" content="#da532c">
+  <meta name="theme-color" content="#ffffff">
+
   <title>SIMPEG - Login</title>
 
   <!-- Custom fonts for this template-->
@@ -29,6 +38,7 @@
 
   <!-- Custom styles for this template-->
   <link href="<?= asset('_assets/css/sb-admin-2.min.css') ?>" rel="stylesheet">
+  <link href="<?= asset('_assets/css/style.css') ?>" rel="stylesheet">
 
 </head>
 
@@ -51,7 +61,7 @@
             <div class="col-lg-6">
                 <div class="p-5">
                     <div class="text-center  mb-4">
-                      <h1 class="h4 text-gray-900">LOGIN</h1>
+                      <h1 class="h4 text-gray-900 font-weight-bold">LOGIN</h1>
                       <span class="text-muted">Sistem Informasi Pegawai</span>
                     </div>
                     <form class="user" method="POST" action="<?= base_url('_config/proses_log') ?>?login">
@@ -63,7 +73,7 @@
                       </div>
                       <div class="form-group">
                           <div class="custom-control custom-checkbox small">
-                          <input type="checkbox" class="custom-control-input" id="customCheck">
+                          <input type="checkbox" class="custom-control-input" id="customCheck" name="remember">
                           <label class="custom-control-label" for="customCheck">Remember Me</label>
                           </div>
                       </div>

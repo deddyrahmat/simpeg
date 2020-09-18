@@ -23,80 +23,60 @@
             </script>';  
         }
     }elseif (isset($_GET['edit'])) {
-        $nipAsli = mysqli_real_escape_string($koneksi, $_POST['nipAsli']);
-        $foto_lama = strip_tags($_POST['foto_lama']);
+        $id = mysqli_real_escape_string($koneksi, $_POST['id']);
         $nip = mysqli_real_escape_string($koneksi, $_POST['nip']);
-        $nama_pegawai = strip_tags($_POST['nama_pegawai']);
-        $tempat_lahir = strip_tags($_POST['tempat_lahir']);
-        $tgl_lahir = strip_tags($_POST['tgl_lahir']);
-        $jk = strip_tags($_POST['jk']);
-        $no_hp = strip_tags($_POST['no_hp']);
-        $agama = strip_tags($_POST['agama']);
-        $email = strip_tags($_POST['email']);
-        $alamat = strip_tags($_POST['alamat']);
-        $goldarah = strip_tags($_POST['goldarah']);
-        $stat_nikah = strip_tags($_POST['stat_nikah']);
-        $stat_pegawai = strip_tags($_POST['stat_pegawai']);
-        $stat_user = strip_tags($_POST['stat_user']);       
+        $jabatan = strip_tags($_POST['jabatan']);
+        $eselon = strip_tags($_POST['eselon']);
+        $tmt = strip_tags($_POST['tmt']);
+        $sampai_tgl = strip_tags($_POST['sampai_tgl']);
 
-        // cek form, apakah user hanya mengubah data tanpa mengganti foto
-        // jika foto tidak diubah, simpan data formnya saja
-        if ($_FILES['foto']['name'] == '') {
-            $query = mysqli_query($koneksi, "UPDATE pegawai SET nip='$nip',nama_pegawai='$nama_pegawai', tempat_lahir='$tempat_lahir', tanggal_lahir='$tgl_lahir', jenis_kelamin='$jk', no_hp='$no_hp', agama='$agama', email='$email',alamat='$alamat',gol_darah='$goldarah',status_pernikahan='$stat_nikah', status_kepegawaian='$stat_pegawai', status_user='$stat_user' WHERE nip='$nipAsli' ");
-            if($query) { 
+        $update = update("UPDATE jabatan SET nama_jabatan='$jabatan',eselon='$eselon',tmt='$tmt',sampai_tgl='$sampai_tgl' WHERE id_jabatan='$id' ");
+        if(mysqli_affected_rows($koneksi) > 0) { 
+            echo '<script>
+            alert("Data Berhasil Diperbarui")
+            window.location = "'.base_url('detail_pegawai').'?id='.$nip.'";
+            </script>';                     
+        }
+        else{
+            echo '<script>
+            alert("Data Gagal Diperbarui")
+            window.location = "'.base_url('detail_pegawai').'?id='.$nip.'";
+            </script>';  
+        }
+    }elseif (isset($_GET['set'])) {
+        $id = $_GET['id'];
+        $nip = $_GET['nip'];
+
+        // lakukan pengecekan status jabatan yang aktif dan berdasqarkan nip pegawai yang bersangkutan
+        $cek = mysqli_query($koneksi,"SELECT * FROM jabatan WHERE nip='$nip' and status_jabatan='aktif'");
+        // apakah hasil pengecekan adalah 0, jika iya maka artonya seluruh data masih nonaktif dan ubah menjadi aktif sesuai dengan id jabatan yang dipilih
+        if (mysqli_num_rows($cek) == 0) {
+            $update = update("UPDATE jabatan SET status_jabatan='aktif' WHERE id_jabatan='$id' ");
+            echo '<script>
+            alert("Data Berhasil Diperbarui")
+            window.location = "'.base_url('detail_pegawai').'?id='.$nip.'";
+            </script>';
+        }
+        // jika sudah ada satu data yang statusnya aktif, maka nonaktifkan dulu semua status yang ada didpegawai tersebut lalu aktifkan sesuai yang diinginkan
+        elseif (mysqli_num_rows($cek) == 1) {
+            $update = update("UPDATE jabatan SET status_jabatan='nonaktif' WHERE nip='$nip' ");
+            
+            if ($update) {
+                $update2 = update("UPDATE jabatan SET status_jabatan='aktif' WHERE id_jabatan='$id' ");
                 echo '<script>
                 alert("Data Berhasil Diperbarui")
-                window.location = "'.base_url('pegawai').'";
-                </script>';                     
-            }
-            else{
+                window.location = "'.base_url('detail_pegawai').'?id='.$nip.'";
+                </script>';
+            }else{
                 echo '<script>
-                alert("Data Gagal Diperbarui")
-                window.location = "'.base_url('tambah_pegawai').'";
-                </script>';  
+                alert("Data Gagal23 Diperbarui")
+                window.location = "'.base_url('detail_pegawai').'?id='.$nip.'";
+                </script>';
             }
         }else{
-            $ekstensi  = ['png','jpeg','jpg'];
-            $namaFile    = strtolower($_FILES['foto']['name']);
-            $tipe   = pathinfo($namaFile, PATHINFO_EXTENSION);
-            $ukuranFile    = $_FILES['foto']['size'];
-            $sumber   = $_FILES['foto']['tmp_name'];
-            $foto = uniqid();
-            $foto .= '.';
-            $foto .= $tipe;
-
-            if(in_array($tipe, $ekstensi) === true)
-            {
-                if($ukuranFile < 1048576) {//1 mb
-                    // hapus foto lama sebelum upload foto baru
-                    unlink("../_assets/img/".$foto_lama);
-
-                    mysqli_query($koneksi, "UPDATE pegawai SET nip='$nip',nama_pegawai='$nama_pegawai', foto_pegawai='$foto' ,tempat_lahir='$tempat_lahir', tanggal_lahir='$tgl_lahir', jenis_kelamin='$jk', no_hp='$no_hp', agama='$agama', email='$email',alamat='$alamat',gol_darah='$goldarah',status_pernikahan='$stat_nikah', status_kepegawaian='$stat_pegawai', status_user='$stat_user' WHERE nip='$nipAsli' ");
-                    $lokasi = "../_assets/img/".$foto;
-                    $upload=move_uploaded_file($sumber, $lokasi);
-                        if($upload) { 
-                            echo '<script>
-                            alert("Data Berhasil Ditambah")
-                            window.location = "'.base_url('pegawai').'";
-                            </script>';                     
-                        }
-                        else{
-                            echo '<script>
-                            alert("Data Gagal Diupload")
-                            window.location = "'.base_url('tambah_pegawai').'";
-                            </script>';  
-                        }
-                } else{
-                    echo '<script>alert("Maaf Ukuran File Terlalu Besar")
-                            window.location = "'.base_url('tambah_pegawai').'";
-                            </script>';  
-                    }
-            }
-            else
-            {
-                echo '<script>alert("Maaf Jenis File Tidak Diizinkan")
-                    window.location = "'.base_url('tambah_pegawai').'";
-                    </script>';  
-            }
+            echo '<script>
+            alert("Data Gagal Diperbarui")
+            window.location = "'.base_url('detail_pegawai').'?id='.$nip.'";
+            </script>';        
         }
     }

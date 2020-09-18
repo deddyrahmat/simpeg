@@ -1,10 +1,7 @@
 <?php
-require_once "../_config/config.php";
-$nip = $_GET['nip'];
 $data_pegawai = query("SELECT * FROM pegawai WHERE nip='$nip'");
-$_SESSION['func'] = $_GET['func'];
 ?>
-<table class="text-dark">
+<table class="text-dark mt-3">
     <tr>
         <td>NIP</td>
         <td>:</td>

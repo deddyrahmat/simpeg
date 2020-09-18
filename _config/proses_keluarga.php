@@ -40,13 +40,13 @@
         if(mysqli_affected_rows($koneksi) > 0) { 
             echo '<script>
             alert("Data Berhasil Diperbarui")
-            window.location = "'.base_url('detail_pegawai').'";
+            window.location = "'.base_url('detail_pegawai').'?id='.$nip.'";
             </script>';                     
         }
         else{
             echo '<script>
             alert("Data Gagal Diperbarui")
-            window.location = "'.base_url('keluarga').'";
+            window.location = "'.base_url('detail_pegawai').'?id='.$nip.'";
             </script>';  
         }
     }

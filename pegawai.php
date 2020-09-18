@@ -21,7 +21,8 @@
 <!-- DataTales Example -->
 <div class="card shadow mb-4">
     <div class="card-header py-3">
-        <a href="<?= base_url('tambah_pegawai') ?>" class="btn btn-info float-right"><i class="fas fa-user-plus"></i> Tambah Pegawai</a>
+        <a href="<?= base_url('tambah_pegawai') ?>" class="btn btn-primary btn-sm float-right"><i class="fas fa-user-plus"></i> Tambah Pegawai</a>
+        <a href="<?= base_url('_report/all_pegawai') ?>" target="_blank" class="btn btn-info btn-sm float-right mr-3"><i class="fas fa-print"></i> Print Pegawai</a>
     </div>
     <div class="card-body">
         <div class="table-responsive">
@@ -45,7 +46,7 @@
                     foreach ($data_p as $p) : ?>
                         <tr>
                             <td><?= $no++; ?></td>
-                            <td><?= $p['nama_pegawai'] ?></td>
+                            <td><?= ucwords($p['nama_pegawai']) ?></td>
                             <td><?= $p['nip'] ?></td>
                             <td><?= $p['email'] ?></td>
                             <td><?= $p['no_hp'] ?></td>
@@ -54,6 +55,7 @@
                             <td>
                                 <a href="<?= base_url('detail_pegawai') ?>?id=<?= $p['nip'] ?>" class="btn btn-success btn-sm"><i class="fas fa-eye"></i> Detail</a>
                                 <a href="<?= base_url('edit_pegawai') ?>?id=<?= $p['nip'] ?>" class="btn btn-warning btn-sm"><i class="fas fa-edit"></i> Edit</a>
+                                <a href="<?= base_url('_report/report_pegawai') ?>?id=<?= $p['nip'] ?>" target="_blank" class="btn btn-info btn-sm"><i class="fas fa-print"></i> Print</a>
                             </td>
                         </tr>
                 <?php endforeach; ?>
