@@ -24,9 +24,9 @@ Dan bagi yang ingin file databasenya, silahkan tuliskan email anda di kolom kome
 Silahkan tuliskan kritik dan saran anda dikolom komentar agar saya bisa memperbaiki dan terus mengembangkan ilmu yang saya miliki sehingga saya bisa menyebarkan pengalaman ini kesemua orang. Terima Kasih.⁣⁣
 
 MEDIA SOSIAL⁣⁣
-- https://facebook.com/deddy.rahmat.10⁣
-- https://www.instagram.com/deddyrahmat/⁣
-- https://twitter.com/DeddyRahmat007⁣
-- https://github.com/deddyrahmat⁣⁣
+- https://facebook.com/deddy.rahmat.10
+- https://www.instagram.com/deddyrahmat/
+- https://twitter.com/DeddyRahmat007
+- https://github.com/deddyrahmat
 
 #simpeg  #web #website #webdesign #webdesigner #frontend #html #css #js #bootstrap #code #coding #ngoding #coder #coderslife #programmer #programmers #programmering #programmerslife #developer
