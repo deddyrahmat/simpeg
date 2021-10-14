@@ -16,10 +16,10 @@
 ?>
 
 <nav aria-label="breadcrumb">
-  <ol class="breadcrumb">
-    <li class="breadcrumb-item"><a href="<?= base_url('index') ?>">Dashboard</a></li>
-    <li class="breadcrumb-item active" aria-current="page">Profil</li>
-  </ol>
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="<?= base_url('index') ?>">Dashboard</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Profil</li>
+    </ol>
 </nav>
 
 <div class="row">

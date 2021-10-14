@@ -42,6 +42,13 @@
                     </script>            
                 ";
             }
+        }else{
+            echo "
+                <script>
+                    alert('Username atau Password Salah');
+                    window.location='".base_url('login')."';
+                </script>            
+            ";
         }
     }elseif (isset($_GET['logout'])) {
         // hapus seluruh data session yang ada
